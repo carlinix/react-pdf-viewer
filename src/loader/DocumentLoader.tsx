@@ -11,7 +11,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import Spinner from '../components/Spinner';
 import ThemeContext from '../theme/ThemeContext';
 import PdfJs from '../vendors/PdfJs';
-import { CharacterMap } from '../Viewer';
+import { CharacterMap, Cors } from '../Viewer';
 import AskForPasswordState from './AskForPasswordState';
 import AskingPassword from './AskingPassword';
 import CompletedState from './CompletedState';
@@ -27,12 +27,13 @@ export type RenderError = (error: LoadError) => React.ReactElement;
 
 interface DocumentLoaderProps {
     characterMap?: CharacterMap;
+    cors?: Cors;
     file: PdfJs.FileData;
     renderError?: RenderError;
     render(doc: PdfJs.PdfDocument): React.ReactElement;
 }
 
-const DocumentLoader: React.FC<DocumentLoaderProps> = ({ characterMap, file, render, renderError }) => {
+const DocumentLoader: React.FC<DocumentLoaderProps> = ({ characterMap, cors, file, render, renderError }) => {
     const theme = useContext(ThemeContext);
     const [status, setStatus] = useState<LoadingStatus>(new LoadingState(0));
 
@@ -48,7 +49,8 @@ const DocumentLoader: React.FC<DocumentLoaderProps> = ({ characterMap, file, ren
         const params = Object.assign(
             {},
             ('string' === typeof file) ? { url: file } : { data: file },
-            characterMap ? { cMapUrl: characterMap.url, cMapPacked: characterMap.isCompressed } : {}
+            characterMap ? { cMapUrl: characterMap.url, cMapPacked: characterMap.isCompressed } : {},
+            cors ? {withCredentials: cors.withCredentials, httpHeaders: cors.httpHeaders } : {}
         );
 
         const loadingTask = PdfJs.getDocument(params);

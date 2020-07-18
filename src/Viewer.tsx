@@ -66,6 +66,11 @@ export interface CharacterMap {
     url: string;
 }
 
+export interface Cors {
+    withCredentials: boolean;
+    httpHeaders: string;
+}
+
 export interface PluginFunctions {
     setViewerState(viewerState: ViewerState): void;
     getViewerState(): ViewerState;
@@ -80,6 +85,7 @@ export type RenderViewer = (props: RenderViewerProps) => React.ReactElement;
 
 interface ViewerProps {
     characterMap?: CharacterMap;
+    cors?: Cors;
     // The default zoom level
     // If it's not set, the initial zoom level will be calculated based on the dimesion of page and the container width
     defaultScale?: number | SpecialZoomLevel;
@@ -107,6 +113,7 @@ interface ViewerProps {
 
 const Viewer: React.FC<ViewerProps> = ({
     characterMap,
+    cors,
     defaultScale,
     fileUrl,
     initialPage = 0,
@@ -147,6 +154,7 @@ const Viewer: React.FC<ViewerProps> = ({
             <LocalizationProvider localization={localization}>
                 <DocumentLoader
                     characterMap={characterMap}
+                    cors={cors}
                     file={file.data}
                     render={(doc: PdfJs.PdfDocument) => (
                         <PageSizeCalculator
