@@ -35,6 +35,6 @@ function createStore<T extends StoreState>(initialState: T): Store<T> {
             return state[key];
         },
     };
-};
+}
 
 export default createStore;
