@@ -43,7 +43,7 @@ declare module 'pdfjs-dist' {
         cMapUrl?: string;
         cMapPacked?: boolean;
         url?: string;
-        httpHeaders?: string;
+//        httpHeaders?: Object;
         withCredentials?: boolean;
     }
     function getDocument(params: GetDocumentParams): LoadingTask;

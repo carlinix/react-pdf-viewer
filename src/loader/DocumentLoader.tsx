@@ -50,7 +50,8 @@ const DocumentLoader: React.FC<DocumentLoaderProps> = ({ characterMap, cors, fil
             {},
             ('string' === typeof file) ? { url: file } : { data: file },
             characterMap ? { cMapUrl: characterMap.url, cMapPacked: characterMap.isCompressed } : {},
-            cors ? {withCredentials: cors.withCredentials, httpHeaders: cors.httpHeaders } : {}
+            cors ? {withCredentials: cors.withCredentials } : {}
+            //cors ? {withCredentials: cors.withCredentials, httpHeaders: cors.httpHeaders } : {}
         );
 
         const loadingTask = PdfJs.getDocument(params);

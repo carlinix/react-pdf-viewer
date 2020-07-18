@@ -27,7 +27,7 @@ import SpecialZoomLevel from './SpecialZoomLevel';
 import ThemeProvider from './theme/ThemeProvider';
 import PdfJs from './vendors/PdfJs';
 import ViewerState from './ViewerState';
-
+//import HttpHeaders from './vendors/WebRequest';
 interface RenderViewerProps {
     viewer: React.ReactElement;
     doc: PdfJs.PdfDocument;
@@ -68,7 +68,7 @@ export interface CharacterMap {
 
 export interface Cors {
     withCredentials: boolean;
-    httpHeaders: string;
+ //   httpHeaders: Object;
 }
 
 export interface PluginFunctions {

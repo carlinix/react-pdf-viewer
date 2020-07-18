@@ -1,7 +1,7 @@
 {
-    "name": "@phuocng/react-pdf-viewer",
-    "version": "1.7.0",
-    "description": "A React component to view a PDF document",
+    "name": "@rcarlini/react-pdf-viewer-cors",
+    "version": "1.7.99rc",
+    "description": "A fork of React component to view a PDF document",
     "license": "https://react-pdf-viewer.dev/license",
     "author": {
         "name": "Nguyen Huu Phuoc",
